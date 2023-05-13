@@ -8,4 +8,4 @@ Initial reason for creating this web app was to provide a solution to the limita
 
 The app also offers a leaderboard feature that ranks users based on their performance. This feature is particularly useful as it allows users to compare their performance against other players in a visually appealing way. Additionally, the app is accessible from any device with an internet connection, making it easy for users to access their data and visualize their performance on the go.
 
-For the purpose of storing the data a local MySQL database has been created and the underlying datasets have been queried from the database.
+For the purpose of storing the data a local MySQL database has been created and the underlying datasets have been queried from it using the SELECT scripts.
