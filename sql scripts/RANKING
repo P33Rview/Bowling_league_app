@@ -1,0 +1,33 @@
+SELECT
+
+       a.*,
+       SUM(a.placement) OVER (PARTITION BY a.player_id ORDER BY a.match_id) as cum_sum_placement,
+       SUM(a.placement) OVER (PARTITION BY a.player_id, a.season ORDER BY a.match_id) as cum_sum_placement_season
+       
+       FROM
+       (
+       SELECT
+       
+       CASE WHEN g.game_date <= '2022-05-26' THEN '2021/2022'
+       	    WHEN g.game_date BETWEEN '2022-05-27' AND '2023-02-22' THEN '2022/2023'
+            END as season,
+       fs.*,
+       RANK() OVER(
+       PARTITION BY tp.match_id 
+       ORDER BY fs.win_points DESC) as placement,
+       tp.match_id,
+       l.location_name,
+       pl.nickname
+       
+       FROM final_score fs
+       
+       LEFT JOIN total_points tp ON tp.points_id = fs.points_id
+       LEFT JOIN games g ON g.match_id = tp.match_id
+       LEFT JOIN location l on l.location_id = g.location_id
+       LEFT JOIN players pl ON pl.player_id = tp.player_id
+       LEFT JOIN strike_spares ss ON ss.player_id = pl.player_id AND ss.match_id = g.match_id
+       
+       ORDER BY g.game_date
+       )a
+       
+       ORDER BY a.match_id;
