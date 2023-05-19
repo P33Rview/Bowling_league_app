@@ -2,7 +2,7 @@
 
 ![Python](https://img.shields.io/badge/python-3670A0?logo=python&logoColor=ffdd54) ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?logo=mysql&logoColor=white)  ![streamlit badge](https://badgen.net/badge/library/streamlit/red?icon=streamlit) 
 
-The Bowling league app is a data-driven **Streamlit** application that enables users to visualize their performance and statistics from bowling matches across multiple seasons (2021/2022 and 2022/2023). 
+The Bowling Analytics app is a data-driven **Streamlit** application that enables users to visualize their performance and statistics from bowling matches across multiple seasons (2021/2022 and 2022/2023). 
 
 [Open the App](https://p33rview-bowling-league-app-01--homepage-hp68gs.streamlit.app/#bowling-analytics-app)
 
