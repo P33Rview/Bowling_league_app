@@ -100,7 +100,7 @@ with st.container():
         season = st.multiselect("Choose a season:", options=df_win_points['season'].unique(), default=df_win_points['season'].unique())
 
     df_selection = df_win_points.query(
-        "nickname == @player and season == @season") # needs to be fixed,aktuálně funguje blbě kvůli OR podmínce
+        "nickname == @player and season == @season")
 
 # --- METRICS ---
 with st.container():
