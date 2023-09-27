@@ -10,6 +10,7 @@ SELECT
        
 CASE WHEN g.game_date <= '2022-05-26' THEN '2021/2022'
      WHEN g.game_date BETWEEN '2022-05-27' AND '2023-02-22' THEN '2022/2023'
+     WHEN g.game_date > '2023-02-22' THEN '2022/2023'
      END as season,
 fs.*,
 RANK() OVER(
