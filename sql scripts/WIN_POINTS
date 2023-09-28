@@ -2,7 +2,10 @@ SELECT
 
 g.game_date,
 YEAR(g.game_date) as year,
-CASE WHEN g.game_date = '2022-05-26' THEN '2021/2022' WHEN g.game_date BETWEEN '2022-05-27' AND '2023-02-22' THEN '2022/2023' END as season,
+CASE WHEN g.game_date < '2022-05-26' THEN '2021/2022' 
+WHEN g.game_date BETWEEN '2022-05-27' AND '2023-02-22' THEN '2022/2023' 
+WHEN g.game_date > '2023-02-22' THEN '2023/2024' 
+END as season,
 fs.*,
 tp.match_id,
 l.location_name,
@@ -14,16 +17,16 @@ ss.gutter_2_count,
 ss.split_count,
 g.game_time,
 p.total_throws,
-ss.strike_countp.total_throws as strike_percentage,
-ss.spare_count(p.total_throws-ss.strike_count) as spare_percentag
+ss.strike_count/p.total_throws as strike_percentage,
+ss.spare_count/(p.total_throws-ss.strike_count) as spare_percentage
 
-FROM final_score f
+FROM final_score fs
 
 LEFT JOIN total_points tp ON tp.points_id = fs.points_id
 LEFT JOIN games g ON g.match_id = tp.match_id
 LEFT JOIN location l ON l.location_id = g.location_id
 LEFT JOIN players pl ON pl.player_id = tp.player_id
 LEFT JOIN strike_spares ss ON ss.player_id = pl.player_id AND ss.match_id = g.match_id
-LEFT JOIN percentages p ON p.player_id = pl.player_id AND p.match_id = g.match_i
+LEFT JOIN percentages p ON p.player_id = pl.player_id AND p.match_id = g.match_id
 
 ORDER BY g.game_date;
