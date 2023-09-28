@@ -103,7 +103,7 @@ with st.container():
     st.caption("Please select at least one element in the filter.")
 
     season = st.multiselect("Choose a season:", options=df_win_points['season'].unique(),
-                            default=df_win_points['season'].unique())
+                            default='2023/2024')
     #filter1, filter2 = st.columns(2)
     #with filter1:
     #    season = st.multiselect("Choose a season:", options=df_win_points['season'].unique(),

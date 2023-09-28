@@ -97,7 +97,7 @@ with st.container():
     with filter1:
         player = st.multiselect("Choose a player:", options=df_win_points['nickname'].unique(), default=df_win_points['nickname'].unique())
     with filter2:
-        season = st.multiselect("Choose a season:", options=df_win_points['season'].unique(), default=df_win_points['season'].unique())
+        season = st.multiselect("Choose a season:", options=df_win_points['season'].unique(), default='2023/2024')
 
     df_selection = df_win_points.query(
         "nickname == @player and season == @season")
