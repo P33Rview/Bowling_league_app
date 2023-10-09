@@ -22,8 +22,6 @@ def main():
                        page_icon = ":trophy:",
                        layout = "wide")
 
-    st.sidebar.success('Select a page above')
-
     # --- HEADER ---
     with st.container():
         st.title("Ranking")
@@ -33,21 +31,21 @@ def main():
     season_1, season_2, season_3 = st.columns(3)
     with season_1:
         st.markdown("")
-        annotated_text(("Winners of 2021/2022 season", "", "#F0F2F6"))
+        annotated_text(("Ranking of 2021/2022 season", "", "#F0F2F6"))
         st.write("""🥇 Helcl    
                  🥈 Spinda    
                  🥉 Pichy""")
 
     with season_2:
         st.markdown("")
-        annotated_text(("Winners of 2022/2023 season", "", "#F0F2F6"))
+        annotated_text(("Ranking of 2022/2023 season", "", "#F0F2F6"))
         st.write("""🥇 Helcl    
                     🥈 Vrbic    
                     🥉 Spinda""")
 
     with season_3:
         st.markdown("")
-        annotated_text(("Winners of 2023/2024 season", "", "#F0F2F6"))
+        annotated_text(("Ranking of 2023/2024 season", "", "#F0F2F6"))
         st.write("""🥇 ?    
                     🥈 ?    
                     🥉 ?""")

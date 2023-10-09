@@ -38,8 +38,6 @@ def main():
                        page_icon = ":bar_chart:",
                        layout = "wide")
 
-    st.sidebar.success('Select a page above')
-
     with st.sidebar:
         with st.expander("❓About"):
             st.markdown("The delta values below each metric express the difference between the  "
@@ -185,7 +183,34 @@ with st.container():
                             df_win_points['spare_percentage'].mean() * 100, 1)) + " %")
 
         st.markdown("#")
+        st.markdown('''
+               <style>
 
+               [data-testid="metric-container"] {
+                   width: auto;
+                   justify-content: center;
+                   margin: auto;
+                   background-color: #f1f2f6;
+                   border-radius: 10px;
+                   padding: 12%   
+               }
+
+               [data-testid="metric-container"] > div {
+                   width: fit-content;
+                   justify-content: center;
+                   margin: auto;
+                   background-color: #f1f2f6;
+                   border-radius: 10px;
+
+               }
+
+               [data-testid="metric-container"] label {
+                   width: fit-content;
+                   margin: auto;
+               }
+
+               </style>
+               ''', unsafe_allow_html=True)
     # upper section bar charts
     col1_upper, col2_upper = st.columns(2)
 

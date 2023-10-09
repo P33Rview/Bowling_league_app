@@ -41,21 +41,27 @@ def main():
                        page_icon = ":bowling:",
                        layout = "wide")
 
-    st.sidebar.success('Select a page above')
-
     with st.sidebar:
+        st.sidebar.title('BowlingScore Pro')
+        st.markdown('version 1.2')
+        st.markdown("Want to dominate the lanes and become a true bowling champion? Look no further! BowlingScore Pro is the app you've been waiting for. "
+                    "Gain valuable insights into your performance with comprehensive statistics, helping you identify strengths and areas for improvement.")
+
+        st.markdown("Use BowlingScore Pro now and experience the future of bowling score tracking. Your journey to bowling excellence begins here.")
+        st.markdown("🏆🎳 #BowlingScorePro #BowlingChampion")
 
         with st.expander("❓About"):
-            st.markdown("The delta values below each metric express the difference between the  "
-                        "all-time average.")
+            st.markdown("The delta values below MAX, AVERAGE and MIN POINTS metric express the difference from the all-time high or low and overall average.")
+
+        st.markdown('The source code can be found on <a href="https://github.com/P33Rview/Bowling_league_app">GitHub</a>.', unsafe_allow_html=True)
 
     # --- HEADER ---
     with st.container():
         left_column, right_column = st.columns(2)
         with left_column:
-            st.title("Bowling Analytics App")
+            st.title("Homepage")
             st.caption("Bowling seasons: {}".format(season_list))
-            st.subheader("Hi there, here you can find your performance over the last two bowling seasons. And compare how you stack up against other players.")
+            st.subheader("Hi there, here you can find your performance over the last {} bowling seasons. And compare how you stack up against other players.".format(len(seasons)))
         with right_column:
             st_lottie(animation_bowling_2, height=200, key="coding")
 
@@ -108,7 +114,7 @@ with st.container():
     try:
         met1_a, met2_a, met3_a = st.columns(3)
         with met1_a:
-            st.metric('total points'.upper(), df_selection['win_points'].sum(),)
+            st.metric('total points'.upper(), df_selection['win_points'].sum())
         with met2_a:
             st.metric('total games'.upper(), int(len(df_selection['match_id'].unique())))
         with met3_a:
@@ -127,6 +133,36 @@ with st.container():
         with met3_b:
             st.metric('min points'.upper(), df_selection['win_points'].min(),
                       delta = int(df_selection['win_points'].min() - df_win_points['win_points'].min()))
+
+        st.markdown('''
+           <style>
+
+           [data-testid="metric-container"] {
+               width: auto;
+               justify-content: center;
+               margin: auto;
+               background-color: #f1f2f6;
+               border-radius: 10px;
+               padding: 12%   
+           }
+
+           [data-testid="metric-container"] > div {
+               width: fit-content;
+               justify-content: center;
+               margin: auto;
+               background-color: #f1f2f6;
+               border-radius: 10px;
+               
+           }
+
+           [data-testid="metric-container"] label {
+               width: fit-content;
+               margin: auto;
+           }
+
+           </style>
+           ''', unsafe_allow_html=True)
+
     except:
         col1, col2, col3 = st.columns(3)
         with col1:
@@ -136,22 +172,47 @@ with st.container():
         with col3:
             st.markdown("#")
 
+
+
 # --- CHARTS ---
 with st.container():
-    st.markdown("###")
-    st.markdown("###")
-    chart_data = df_selection.groupby(['match_id', 'game_date', 'location_name', 'nickname'])['win_points'].sum()
-    test = pd.DataFrame(chart_data.reset_index())
 
-    # wanted result
-    bar = alt.Chart(test).mark_bar().encode(
-        x=alt.X('match_id:O', title="Match"),
-        y=alt.Y('win_points:Q', title="Win points", axis=alt.Axis(labelFontSize=15, titleFontSize=15)),
-        color='nickname:N',
-        tooltip=[alt.Tooltip('game_date', title="Date"),
-                 alt.Tooltip('location_name', title="Location"),
-                 alt.Tooltip('match_id', title="Match ID"),
-                 alt.Tooltip('nickname', title="Player"),
-                 alt.Tooltip('win_points', title="Win points")])
-    st.altair_chart(bar, use_container_width=True, theme="streamlit")
+    # toggle button used to switch between stacked barplots and grouped barplots
+    on = st.toggle('Toggle to enable comparison between players.')
+
+    if on:
+        st.markdown("###")
+        st.markdown("###")
+        chart_data = df_selection.groupby(['match_id', 'game_date', 'location_name', 'nickname'])['win_points'].sum()
+        test = pd.DataFrame(chart_data.reset_index())
+        # wanted result
+        bar = alt.Chart(test).mark_bar().encode(
+            x=alt.X('match_id:O', title="Match"),
+            y=alt.Y('win_points:Q', title="Win points", axis=alt.Axis(labelFontSize=15, titleFontSize=15)),
+            xOffset='nickname:N',
+            color='nickname:N',
+            tooltip=[alt.Tooltip('game_date', title="Date"),
+                     alt.Tooltip('location_name', title="Location"),
+                     alt.Tooltip('match_id', title="Match ID"),
+                     alt.Tooltip('nickname', title="Player"),
+                     alt.Tooltip('win_points', title="Win points")])
+        st.altair_chart(bar, use_container_width=True, theme="streamlit")
+
+    else:
+        st.markdown("###")
+        st.markdown("###")
+        chart_data = df_selection.groupby(['match_id', 'game_date', 'location_name', 'nickname'])['win_points'].sum()
+        test = pd.DataFrame(chart_data.reset_index())
+#
+        # wanted result
+        bar = alt.Chart(test).mark_bar().encode(
+            x=alt.X('match_id:O', title="Match"),
+            y=alt.Y('win_points:Q', title="Win points", axis=alt.Axis(labelFontSize=15, titleFontSize=15)),
+            color='nickname:N',
+            tooltip=[alt.Tooltip('game_date', title="Date"),
+                     alt.Tooltip('location_name', title="Location"),
+                     alt.Tooltip('match_id', title="Match ID"),
+                     alt.Tooltip('nickname', title="Player"),
+                     alt.Tooltip('win_points', title="Win points")])
+        st.altair_chart(bar, use_container_width=True, theme="streamlit")
 
