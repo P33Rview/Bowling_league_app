@@ -2,7 +2,7 @@
 
 ![Python](https://img.shields.io/badge/python-3670A0?logo=python&logoColor=ffdd54) ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?logo=mysql&logoColor=white)  ![streamlit badge](https://badgen.net/badge/library/streamlit/red?icon=streamlit) 
 
-The Bowling Analytics app is a data-driven **Streamlit** application that enables users to visualize their performance and statistics from bowling matches across multiple seasons (2021/2022 and 2022/2023). The data used for the app is currently stored in a local MySQL database, that is yet to be deployed through AWS to allow for a direct connection within the app.
+The Bowling Analytics app is a data-driven **Streamlit** application that enables users to visualize their performance and statistics from bowling matches across multiple seasons. The data used for the app is currently stored in a local MySQL database, that is yet to be deployed through AWS to allow for a direct connection within the app.
 
 [Click here to open the App.](https://p33rview-bowling-league-app-01--homepage-hp68gs.streamlit.app/#bowling-analytics-app)
 
