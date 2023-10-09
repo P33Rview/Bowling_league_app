@@ -7,7 +7,7 @@ pandas==2.0.1
 pipreqs==0.4.13
 requests==2.28.2
 st-annotated-text==4.0.0
-streamlit==1.27.0
+streamlit==1.27.2
 streamlit-camera-input-live==0.2.0
 streamlit-card==0.0.4
 streamlit-embedcode==0.1.2
