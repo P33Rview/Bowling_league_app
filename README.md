@@ -4,7 +4,7 @@
 
 The Bowling Analytics app is a data-driven **Streamlit** application that enables users to visualize their performance and statistics from bowling matches across multiple seasons. The data used for the app is currently stored in a local MySQL database, that is yet to be deployed through AWS to allow for a direct connection within the app.
 
-[Click here to open the App.](https://[p33rview-bowling-league-app-01--homepage-hp68gs.streamlit.app](https://bowlingscorepro.streamlit.app/)/#bowling-analytics-app)
+[Click here to open the App.](https://[p33rview-bowling-league-app-01--homepage-hp68gs.streamlit.app](https://bowlingscorepro.streamlit.app/))
 
 ![image](https://github.com/P33Rview/Bowling_league_app/blob/613c1e553c78eb335f8461cd659366d91bc5fd50/screenshot_bowling.jpg)
 
