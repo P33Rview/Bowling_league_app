@@ -28,7 +28,7 @@ def main():
         st.caption("Bowling seasons: {}".format(season_list))
         st.subheader("Here you can track your total season ranking either by game points or by total placement.")
 
-    season_1, season_2, season_3 = st.columns(3)
+    season_1, season_2, season_3, season_4 = st.columns(4)
     with season_1:
         st.markdown("")
         annotated_text(("Season 2021/2022 Ranking", "", "#F0F2F6"))
@@ -46,9 +46,17 @@ def main():
     with season_3:
         st.markdown("")
         annotated_text(("Season 2023/2024 Ranking", "", "#F0F2F6"))
+        st.write("""🥇 Spinda    
+                    🥈 Helcl    
+                    🥉 Pichy""")
+
+    with season_4:
+        st.markdown("")
+        annotated_text(("Season 2024/2025 Ranking", "", "#F0F2F6"))
         st.write("""🥇 ?    
                     🥈 ?    
                     🥉 ?""")
+        
 if __name__== "__main__":
     main()
 
@@ -58,7 +66,7 @@ with st.container():
     st.subheader("Filter")
     st.caption("Please select at least one element in the filter.")
     season = st.multiselect("Choose a season:", options=df_win_points['season'].unique(),
-                            default='2023/2024')
+                            default='2024/2025')
     # filter1, filter2 = st.columns(2)
     # with filter1:
     #    season = st.multiselect("Choose a season:", options=df_win_points['season'].unique(),
